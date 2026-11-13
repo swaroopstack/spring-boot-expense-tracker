@@ -2,6 +2,7 @@ package com.swaroop.expensetracker.controller;
 
 import com.swaroop.expensetracker.dto.ExpenseRequest;
 import com.swaroop.expensetracker.dto.ExpenseResponse;
+import com.swaroop.expensetracker.dto.TotalExpenseResponse;
 import com.swaroop.expensetracker.service.ExpenseService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,12 @@ public class ExpenseController {
     @GetMapping
     public ResponseEntity<List<ExpenseResponse>> getAll() {
         return ResponseEntity.ok(expenseService.findAll());
+    }
+
+    /** GET /api/expenses/total - sum and count of all expenses (200 OK). */
+    @GetMapping("/total")
+    public ResponseEntity<TotalExpenseResponse> getTotal() {
+        return ResponseEntity.ok(expenseService.getTotal());
     }
 
     /** GET /api/expenses/{id} - returns one expense or 404 Not Found. */
