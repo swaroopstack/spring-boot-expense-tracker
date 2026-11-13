@@ -65,4 +65,11 @@ public class ExpenseController {
                                                   @Valid @RequestBody ExpenseRequest request) {
         return ResponseEntity.ok(expenseService.update(id, request));
     }
+
+    /** DELETE /api/expenses/{id} - deletes an expense (204 No Content) or 404 Not Found. */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        expenseService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
